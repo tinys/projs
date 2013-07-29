@@ -1,6 +1,6 @@
 { 
   // the work space root;
-  "root" : "E:\\sinaWorkSpace", 
+  "root" : "E:/sinaWorkSpace", 
 
   // that work space port,default: 80
   "port": 80,

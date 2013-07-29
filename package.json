@@ -1,6 +1,6 @@
 {
-	"name": "iproject",
-	"description": "Build a front-end development environment，Including to the compression of CSS and JS.",
+	"name": "projs",
+	"description": "基于nodejs的前端开发工具包，包括前端开发环境的构建，前端JavaScript/CSS的打包。",
 	"author": {
 		"name": "Stri",
 		"email": "stri.vip@gmail.com",
@@ -13,16 +13,16 @@
 	],
 	"bugs": {
 		"email": "stri.vip@gmail.com",
-		"web": "https://github.com/stri/iproject/issues"
+		"web": "https://github.com/stri/projs/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/stri/iproject.git"
+		"url": "https://github.com/stri/projs.git"
 	},
 	"version": "0.0.1",
-	"main": "./i-project.js",
+	"main": "./index.js",
 	"bin" : {
-		"iproject" : "./bin/iproject"
+		"iproject" : "./bin/projs"
 	},
   "engines": {
     "node": ">=0.4.0"
