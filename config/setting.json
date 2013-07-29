@@ -1,0 +1,25 @@
+{ 
+  // the work space root;
+  "root" : "E:\\sinaWorkSpace", 
+
+  // that work space port,default: 80
+  "port": 80,
+
+  // 包依赖风格,当前版本支持：nodejs、import(新浪STK框架)两个风格
+  "js_package_depend_style" : "Pro",
+
+  // 是否压缩
+  "css_compress": false,
+  "js_compress": true,
+
+  // 是否给CSS里的图片添加版本号
+  "css_image_version": true,
+
+  // 编码，默认为utf-8
+  "css_charset" : "utf-8",
+  "js_charset" : "utf-8",
+
+  // 压缩后，CSS代码顶部是否加注释，如果是多行，请用\n换行
+  "css_comment_text" : "",
+  "js_comment_text" : "test22"
+}
