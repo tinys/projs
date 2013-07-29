@@ -2,9 +2,68 @@
 
 基于`nodejs`的前端开发工具包，包括前端开发环境的构建，前端`JavaScript`/`CSS`的打包。
 
+### 安装命令
+
+    npm install projs -g
+
+### 使用方法
+
+`projs -c` 用于查看当前配置，如
+
+    projs -c
+
+`projs name value -c`用于设置参数（参数列表如下）
+
+##### 参数列表
+
+名称|默认|说明
+-------|------|-----
+root||projs服务的目录
+port|8080|服务的端口
+js_package_depend_style|Pro|JavaScript包合并方式
+css_compress|false|CSS是否压缩
+js_compress|false|JS是否压缩
+css_image_version|false|CSS里的图片版本号是否添加
+css_charset|utf-8|合并后的CSS的文件编码格式
+js_charset|utf-8|合并后的JS的文件编码格式
+css_comment_text|无|合并后的注释文案
+js_comment_text|无|合并后的注释文案
+
+例如：
+
+1. 设置服务目录
+        
+        projs root 'D:\workSpace' -c 
+ 
+2. 设置服务端口
+
+        projs port 80 -c
+
+3. 设置JS合并方式（现只支持`STK`,`Pro`）两种
+
+        projs js_pack_depend_style 'STK'
+        
+4. 设置压缩CSS
+
+        projs css_compress true
+        
+5. 设置压缩JS
+
+        projs js_compress true
+       
 
 
-### 历史版本
+
+
+
+
+### 版本列表
+
+##### 版本0.0.5
+
+时间： 2013.7.29
+
+* 添加命令行支持
 
 
 ##### 版本0.0.1
