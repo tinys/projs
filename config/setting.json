@@ -1,9 +1,9 @@
  {
-    "root": "/Users/mac/Documents/sina_video_space/",
+    "root": "/Users/mac/Documents/my_work_space",
     "port": 80,
-    "js_package_depend_style": "STK",
+    "js_package_depend_style": "Pro",
     "css_compress": "true",
-    "js_compress": "true",
+    "js_compress": "false",
     "css_image_version": "true",
     "css_charset": "utf-8",
     "js_charset": "utf-8",
