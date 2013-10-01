@@ -6,6 +6,9 @@
  */
 var conf = require('./lib/config');
 var server= require('./lib/server');
+var fs = require('fs');
+var path = require('path');
+var parseJSON = require('./lib/util/parseJSON');
 var httpd;
 
 module.exports = {
@@ -17,6 +20,10 @@ module.exports = {
   },
   stop: function(){
     return httpd && httpd.stop();
+  },
+  getPackage: function(){
+    var data = fs.readFileSync(path.normalize(__dirname+'/package.json'), 'utf-8');
+    return parseJSON(data);
   },
   setConfig: conf.setConfig,
   getConfig: conf.getConfig

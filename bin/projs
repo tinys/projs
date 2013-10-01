@@ -2,6 +2,7 @@
 var projs = require('../index');
 var argv = require('optimist').argv;
 var task = require('../lib/task');
+var packageData = projs.getPackage();
 
 task.on('setConfig',function(data) {
   if(data.code == '2'){
@@ -9,7 +10,6 @@ task.on('setConfig',function(data) {
   }
 });
 
-console.log(argv);
 // 配置
 if(argv.c || argv.config){
   var conf = '';
@@ -23,6 +23,12 @@ if(argv.c || argv.config){
     conf = projs.getConfig();
     return console.log(JSON.stringify(conf).replace(/{|}/gi,'\n  ').replace(/\,\"/gi,'\n\n  "'));
   }
+}
+
+// 版本号
+if(argv._[0] == 'v' || argv.version){
+  console.log(packageData['version']);
+  return;
 }
 
 // 开启

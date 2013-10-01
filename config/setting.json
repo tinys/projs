@@ -3,7 +3,7 @@
     "port": 80,
     "js_package_depend_style": "Pro",
     "css_compress": "true",
-    "js_compress": "false",
+    "js_compress": "true",
     "css_image_version": "true",
     "css_charset": "utf-8",
     "js_charset": "utf-8",
