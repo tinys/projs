@@ -1,7 +1,7 @@
  {
     "root": "/Users/mac/Documents/my_work_space",
     "port": 80,
-    "js_package_depend_style": "Pro",
+    "js_package_depend_style": "STK",
     "css_compress": "true",
     "js_compress": "true",
     "css_image_version": "true",
