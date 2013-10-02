@@ -11,6 +11,9 @@ var path = require('path');
 var parseJSON = require('./lib/util/parseJSON');
 var task = require('./lib/util/task');
 var httpd;
+path.existsSync = fs.existsSync ? function(uri) {
+  return fs.existsSync.call(fs, uri)
+} : path.existsSync;
 
 module.exports = {
 	start: function() {
@@ -35,7 +38,11 @@ module.exports = {
 				}
 			});
 		} else {
-			task.compress(from, to, config);
+      if(!path.existsSync(to)){
+        console.log(to+' is exit.');
+      }else{
+        task.compress(from, to, config);
+      }
 		}
 	},
 	setConfig: conf.setConfig,
