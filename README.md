@@ -4,7 +4,7 @@
 
 ### 最新版本
 
-`0.0.8`
+`0.1.0`
 
 ### 安装命令
 
@@ -24,8 +24,8 @@
 
 	名称|说明|支持的版本
 ----|----|----
-require|1.遵循`AMD`[部分规范](https://github.com/stri/projs/issues/1)|0.0.8+
-import|合并`$import`引入的JS文件|0.0.8+
+require|1.遵循`AMD`[部分规范](https://github.com/stri/projs/issues/1)|0.1.0+
+import|合并`$import`引入的JS文件|0.1.0+
 
 
 
