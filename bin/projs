@@ -2,7 +2,6 @@
 var projs = require('../index');
 var argv = require('optimist').argv;
 var task = require('../lib/task');
-var packageData = projs.getPackage();
 
 task.on('setConfig',function(data) {
   if(data.code == 2){
@@ -81,7 +80,7 @@ if(argv.f && argv.t){
 
 // 版本号
 if(argv.v || argv.version){
-  console.log(packageData['version']);
+  console.log('0.1.1');
   return;
 }
 
@@ -95,7 +94,6 @@ console.log(getDefaultText());
 
 function getDefaultText(){
   var text = [];
-  var conf = projs.getConfig();
   text.push('Usage: projs <command>');
   text.push('');
   text.push('-h    获取帮助信息');
