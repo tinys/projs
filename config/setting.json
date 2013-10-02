@@ -1,7 +1,7 @@
  {
-    "root": "/Users/mac/Documents/my_work_space",
+    "root": "aaa",
     "port": 80,
-    "js_package_depend_style": "STK",
+    "js_package_depend_style": "import",
     "css_compress": "true",
     "js_compress": "true",
     "css_image_version": "true",

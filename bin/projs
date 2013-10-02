@@ -5,19 +5,57 @@ var task = require('../lib/task');
 var packageData = projs.getPackage();
 
 task.on('setConfig',function(data) {
-  if(data.code == '2'){
+  if(data.code == 2){
     console.log('\n  Error: '+data.msg+'\n');
+  }else if(data.code == 1){
+    console.log('设置'+data.data.name+'成功！');
   }
 });
 
+// 获取帮助信息
+if(argv.h){
+  // 获取-c的帮助
+  if(argv.c){
+    console.log('<command>: projs [name][value] -c')
+    console.log('<description>: 设置name的value或获取name的value值','[name]有如下:');
+    console.log('   '+Object.keys(projs.getConfig()).join(','));
+    return;
+  }
+
+  // 获取-v的帮助
+  if(argv.v){
+    console.log('<command>: projs -v')
+    console.log('<description>: 获取当前projs的版本号');
+    return;
+  }
+
+  // 获取
+  if(argv.s){
+    console.log('<command>: projs -s')
+    console.log('<description>: 启动projs');
+    return;
+  }
+
+  // 打包
+  if(argv.f || argv.t){
+    console.log('<command>: projs -f [form|uri][可选] -t [target][必选] -u [username][可选] -p [password][可选]');
+    console.log('<description>:');
+    console.log('      1) 如果-f是SVN地址，则-u,-p,是[必选]');
+    console.log('      2) 如果只有一个参数，则为-t,即打包当前目录');
+    return;
+  }
+
+  return console.log(getDefaultText());
+}
+
 // 配置
-if(argv.c || argv.config){
+if(argv.c){
   var conf = '';
   if(argv._.length == 2){
     return projs.setConfig(argv._[0],argv._[1]);
   }else if(argv._.length == 1){
     var conf = projs.getConfig(argv._[0]);
-    return conf;
+    return console.log(conf);
   }else{
     console.log('\nprojs\'s config is:\n');
     conf = projs.getConfig();
@@ -25,26 +63,32 @@ if(argv.c || argv.config){
   }
 }
 
+
+// 打包
+if(argv.f && argv.t){
+  if(/^http/gi.test(argv.f)){
+    if(argv.u && argv.p){
+      return projs.compress(argv.f,argv.t,argv.u,argv.p);
+    }else {
+      return console.log('参数缺失！请查看帮助: projs -h -f');
+    }
+  }else{
+    return projs.compress(argv.f,argv.t);
+  }
+}else if(argv.f && !argv.t && !argv.u && !argv.p){
+  return projs.compress(null,argv.f);
+}
+
 // 版本号
-if(argv._[0] == 'v' || argv.version){
+if(argv.v || argv.version){
   console.log(packageData['version']);
   return;
 }
 
-// 开启
-if(argv._[0] == 'start' || argv.s){
+// 启动服务
+if(argv._[0] == 'start'){
   projs.start();
   return;
-}
-
-// 停止
-if(argv._[0] == 'stop' || argv.stop){
-  projs.stop();
-  return;
-}
-
-if(argv.h || argv.help){
-  return console.log(getDefaultText());
 }
 
 console.log(getDefaultText());
@@ -54,18 +98,15 @@ function getDefaultText(){
   var conf = projs.getConfig();
   text.push('Usage: projs <command>');
   text.push('');
-  text.push('where <command> is one of :');
-  text.push(' '+Object.keys(conf).join(','));
-  text.push(' ');
-  text.push('projs -h       quick help on!');
-  text.push('projs -c       display full config');
-//  text.push('projs -v       quick display projs\'s version');
-  text.push('projs -help    help on!');
-  text.push('projs -start   start server!');
-  text.push('projs -stop    stop server!');
-  text.push('projs start    start server!');
-  text.push('projs stop     stop server!');
-//  text.push('projs -version display projs\'s version');
+  text.push('-h    获取帮助信息');
+  text.push('-c    获取配置参数或设置配置参数');
+  text.push('-v    获取版本号');
+  text.push('-s    启动服务');
+  text.push('-f    要打包的目录或代码仓库地址');
+  text.push('-t    打包后输出的目录');
+  text.push('-u    代码仓库的用户名');
+  text.push('-p    代码仓库的密码');
+  text.push('');
 
-  return text.join('\n');
+  return text.join('\n  ');
 }
