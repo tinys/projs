@@ -62,10 +62,6 @@ if(argv.c){
   }
 }
 
-argv.f = argv.f === true ? null : argv.f;
-argv.t = argv.t === true ? null : argv.t;
-argv.u = argv.u === true ? null : argv.u;
-argv.p = argv.p === true ? null : argv.p;
 
 // 打包
 if(argv.f && argv.t){
@@ -111,4 +107,26 @@ function getDefaultText(){
   text.push('');
 
   return text.join('\n  ');
+}
+
+/**
+ * 没有设置这个值
+ * @param   {[type]}   obj  [description]
+ * @return  {Boolean}       [description]
+ */
+function isUndefined(obj){
+  return typeof obj === 'undefined';
+}
+  
+/**
+ * 是有用的key
+ * @param   {[type]}   key  [description]
+ * @return  {Boolean}       [description]
+ */
+function isOwnProperty(key){
+  return argv.hasOwnProperty(key);
+}
+
+function _log(cmd,dec){
+  
 }
