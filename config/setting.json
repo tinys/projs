@@ -1,12 +1,12 @@
  {
-    "root": "aaa",
+    "root": "/Users/mac/Documents/my_work_space/git-xinqianduan/xinqianduan.github.com",
     "port": 80,
-    "js_package_depend_style": "import",
+    "js_package_depend_style": "require",
     "css_compress": "true",
-    "js_compress": "true",
+    "js_compress": "false",
     "css_image_version": "true",
     "css_charset": "utf-8",
     "js_charset": "utf-8",
     "css_comment_text": "",
-    "js_comment_text": "test22"
+    "js_comment_text": ""
 }
