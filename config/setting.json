@@ -1,8 +1,8 @@
  {
-    "root": "/Users/mac/Documents/my_work_space/git-xinqianduan/xinqianduan.github.com",
+    "root": "/Users/mac/Documents/my_work_space/sae-xinqianduan/xinqianduan/1/",
     "port": 80,
     "js_package_depend_style": "require",
-    "css_compress": "true",
+    "css_compress": "false",
     "js_compress": "false",
     "css_image_version": "true",
     "css_charset": "utf-8",
