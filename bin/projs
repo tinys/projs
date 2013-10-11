@@ -80,7 +80,7 @@ if(argv.f && argv.t){
 
 // 版本号
 if(argv.v || argv.version){
-  console.log('0.1.5');
+  console.log('0.1.6');
   return;
 }
 
@@ -99,11 +99,11 @@ function getDefaultText(){
   text.push('-h    获取帮助信息');
   text.push('-c    获取配置参数或设置配置参数');
   text.push('-v    获取版本号');
-  text.push('-s    启动服务');
   text.push('-f    要打包的目录或代码仓库地址');
   text.push('-t    打包后输出的目录');
   text.push('-u    代码仓库的用户名');
   text.push('-p    代码仓库的密码');
+  text.push('start    启动服务');
   text.push('');
 
   return text.join('\n  ');
