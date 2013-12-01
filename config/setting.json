@@ -4,7 +4,7 @@
     "js_package_depend_style": "require",
     "css_compress": "false",
     "js_compress": "false",
-    "css_image_version": "true",
+    "css_image_version": "false",
     "css_charset": "utf-8",
     "js_charset": "utf-8",
     "css_comment_text": "",
