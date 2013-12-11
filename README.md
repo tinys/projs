@@ -4,7 +4,7 @@
 
 #### 最新版本
 
-`0.2.0` 	[2013-12-11更新功能列表](https://github.com/stri/projs/issues/4)
+`0.2.0` 	[更新功能列表](https://github.com/stri/projs/issues/4)
 
 #### 安装命令
 
@@ -58,7 +58,7 @@ import|合并`$import`引入的JS文件|0.1.0+
 root||projs服务的目录|所有
 port|8080|服务的端口|所有
 js_package_depend_style|Pro|JavaScript包合并方式|所有
-css_package_depend_style<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|default|CSS包合并方式|`0.2.0+`
+css_package_depend_style`新`|default|CSS包合并方式|`0.2.0+`
 css_compress|false|CSS是否压缩
 js_compress|false|JS是否压缩
 css_image_version|false|CSS里的图片版本号是否添加
@@ -66,12 +66,12 @@ css_charset|utf-8|合并后的CSS的文件编码格式
 js_charset|utf-8|合并后的JS的文件编码格式
 css_comment_text|无|合并后的注释文案
 js_comment_text|无|合并后的注释文案
-js_cache<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|false|JS文件是否开启缓存|`0.2.0+`
-css_cache<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|false|CSS文件是否开启缓存|`0.2.0+`
-js_file_type<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|\.js|JS文件的后缀配置|`0.2.0+`
-css_file_type<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|\.js|CSS文件的后缀配置|`0.2.0+`
-js_compress_path<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|无|要打包的JS文件目录|`0.2.0+`
-css_compress_path<sup style="background-color:red;border-radius:3px;padding:1px;color:#fff;">新</sup>|无|要打包的JS文件目录|`0.2.0+`
+js_cache`新`|false|JS文件是否开启缓存|`0.2.0+`
+css_cache`新`|false|CSS文件是否开启缓存|`0.2.0+`
+js_file_type`新`|\.js|JS文件的后缀配置|`0.2.0+`
+css_file_type`新`|\.css|CSS文件的后缀配置|`0.2.0+`
+js_compress_path`新`|无|要打包的JS文件目录|`0.2.0+`
+css_compress_path`新`|无|要打包的JS文件目录|`0.2.0+`
 
 
 ##### 三、打包项目
