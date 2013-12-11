@@ -2,11 +2,18 @@
     "root": "/Users/mac/Documents/my_work_space/sae-jscssimage/jscssimage/3",
     "port": 80,
     "js_package_depend_style": "require",
+    "css_package_depend_style": "less",
+    "js_cache": "true",
+    "css_cache": "false",
     "css_compress": "false",
-    "js_compress": "false",
+    "js_compress": "true",
     "css_image_version": "false",
     "css_charset": "utf-8",
     "js_charset": "utf-8",
     "css_comment_text": "",
-    "js_comment_text": ""
+    "js_comment_text": "",
+    "js_file_type": ".js",
+    "css_file_type": ".css,.less",
+    "js_compress_path": "",
+    "css_compress_path": "/page/"
 }
