@@ -4,7 +4,7 @@
 
 #### 最新版本
 
-`0.2.1` 	[更新功能列表](https://github.com/stri/projs/issues/4)
+`0.2.2` 	[更新功能列表](https://github.com/stri/projs/issues/4)
 
 #### 安装命令
 

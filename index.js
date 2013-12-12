@@ -33,6 +33,7 @@ module.exports = {
 		config = conf.getConfig();
 		if (/^http/gi.test(from)) {
 			task.svnExport(from, username, password, to, {
+				config: config,
 				onComplete: function() {
 					task.compress(null, to, config);
 				}
