@@ -10,12 +10,14 @@ var fs = require('fs');
 var path = require('path');
 var parseJSON = require('./lib/util/parseJSON');
 var task = require('./lib/util/task');
+var pack = require('./lib/pack');
 var httpd;
 path.existsSync = fs.existsSync ? function(uri) {
   return fs.existsSync.call(fs, uri)
 } : path.existsSync;
 
 module.exports = {
+	pack: pack,
 	start: function() {
 		var config = conf.getConfig();
 		httpd = httpd ? httpd : server(config);

@@ -4,4 +4,6 @@
 		server.stop();
 	}catch(e){}
 	server.start();
+	
+	 console.log(server.pack.install('https://raw.github.com/stri/projs_plugins_manage/master/test.js'));
 })(module)
