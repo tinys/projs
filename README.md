@@ -1,96 +1,57 @@
 ## projs
 
->基于`nodejs`的前端开发工具包，包括前端开发环境的构建，前端`JavaScript`/`CSS`的打包。
+>基于`nodejs`的前端开发环境工具，包含了前端开发过程中的代码合并、代码压缩等功能，目的是使前端开发工程师更专注于代码上的开发和其它事上来。另外针对不同团队前端代码包的合并方式不同，增加扩展功能，用于自定义自己团队的包合并方式。更多功能，请查看功能列表。
 
 #### 最新版本
 
-`0.2.3` 	[更新功能列表](https://github.com/stri/projs/issues/5)
+`0.3.0` 	[更新历史及功能列表](https://github.com/stri/projs/issues/5)
 
 #### 安装命令
 
     npm install projs -g
     
-#### 基本约定
-
-1. 其中的`js`和`css`目录必须放在同一目录中,如:
-
-		project/
-			|---js/
-			|---css/
-
-2. CSS的打包中，有对图片版本的处理，即如在配置中设置`css_image_version`后，则打包时，会把图片的md5值的前16位当做版本号（当然，只适用于和css同一工程的图片）
-
-3. JS的合并规则，即配置中的`js_package_depend_style`,现版本支持两种方式,请查看下面
-
-	名称|说明|支持的版本
-----|----|----
-require|1.遵循`AMD`[部分规范](https://github.com/stri/projs/issues/1)|0.1.0+
-import|合并`$import`引入的JS文件|0.1.0+
-
-
-
 #### 使用方法
 
-##### 一、所有参数
-###### 命令说明：
 
-	Usage: projs <command>
-		-h    获取帮助信息
-		-c    获取配置参数或设置配置参数
-		-v    获取版本号
-		-f    要打包的目录或代码仓库地址
-		-t    打包后输出的目录
-		-u    代码仓库的用户名
-		-p    代码仓库的密码
-		start 启动服务
+第一步、安装
 
-##### 二、配置参数
+	npm install projs -g
+	
+第二步、配置要启动服务的目录（此目录是http要访问的目录）
 
-###### 命令说明：
-	<command>: projs [name][value] -c
-	<description>: 设置name的value或获取name的value值 [name]有如下:root,port,js_package_depend_style,css_compress,js_compress,css_image_version,css_charset,js_charset,css_comment_text,js_comment_text
+	projs root /Users/mac/Documents/projs-demo-workspace/ --config
+	
+第三步、配置CSS包合并的方式，默认为原生，如果你使用是的`LESS`预编译,则
 
+	projs css_package_depend_style less --config
+	
+第三步、配置JS包合并的方式，默认为`default`(没有包的引用)，如果你使用的是`$import`的方式，则
 
-###### 参数列表：
+	projs js_package_depend_style import --config
+	
+第四步、可以进行了开发了。
 
-名称|默认|说明|支持的版本
--------|------|-----|-----
-root||projs服务的目录|所有
-port|8080|服务的端口|所有
-js_package_depend_style|Pro|JavaScript包合并方式|所有
-css_package_depend_style`新`|default|CSS包合并方式|`0.2.0+`
-css_compress|false|CSS是否压缩
-js_compress|false|JS是否压缩
-css_image_version|false|CSS里的图片版本号是否添加
-css_charset|utf-8|合并后的CSS的文件编码格式
-js_charset|utf-8|合并后的JS的文件编码格式
-css_comment_text|无|合并后的注释文案
-js_comment_text|无|合并后的注释文案
-js_cache`新`|false|JS文件是否开启缓存|`0.2.0+`
-css_cache`新`|false|CSS文件是否开启缓存|`0.2.0+`
-js_file_type`新`|\.js|JS文件的后缀配置|`0.2.0+`
-css_file_type`新`|\.css|CSS文件的后缀配置|`0.2.0+`
-js_compress_path`新`|无|要打包的JS文件目录|`0.2.0+`
-css_compress_path`新`|无|要打包的JS文件目录|`0.2.0+`
+第五步、开发完之后，进入测试，并部署仿真环境
+
+	projs js_compress true --config // 设置压缩JS
+	projs css_compress true --config // 设置压缩CSS
+	projs css_image_version true --config // CSS图片使用版本号
+	projs css_cache true --config // 设置CSS缓存，只进行一次合并
+	projs js_cache true --config // 设置JS缓存，只进行一次合并
+	projs --start // 启动服务
+
+第六步、打包上线
+
+	projs js_compress_path /page/ // 设置JS要打包的目录，多个用逗号隔开
+	projs css_compress_path /page/ // 设置css要打包的目录，多个用逗号隔开
+	projs https://svn.xx.com/ /page/ --compress --username stri --password 123456
+	
+第七步、OK
 
 
-##### 三、打包项目
+#### 安装打包插件
+	
+> 供使用者进行打包方式扩展使用，可扩展自定义的包合并方法，具体参考：[https://github.com/stri/projs/issues/6](https://github.com/stri/projs/issues/6)
 
-###### 命令说明：
-	<command>: projs -f [form|uri][可选] -t [target][必选] -u [username][可选] -p [password][可选]
-	<description>:
-      1) 如果-f是SVN地址，则-u,-p,是[必选]
-      2) 如果只有一个参数，则为-t,即打包当前目录
-
-###### 例子：
-1.	把SVN地址里的代码打包
-		
-		projs -f "http://svn.xx" -t "/target/" -u "username" -p "12346"
-
-2.	把A目录的项目打到B目录中
-
-		projs -f A -t B 
-3. 把A目录里的文件打包
-
-		projs -f A
+	porjs install http:xx.con/import.js
 

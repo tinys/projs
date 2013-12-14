@@ -2,6 +2,7 @@
 var projs = require('../index');
 var argv = require('optimist').argv;
 var task = require('../lib/task');
+var $version = '0.3.0';
 
 task.on('setConfig',function(data) {
   if(data.code == 2){
@@ -11,100 +12,92 @@ task.on('setConfig',function(data) {
   }
 });
 
-// 获取帮助信息
-if(argv.h){
-  // 获取-c的帮助
-  if(argv.c){
-    console.log('<command>: projs [name][value] -c')
-    console.log('<description>: 设置name的value或获取name的value值','[name]有如下:');
-    console.log('   '+Object.keys(projs.getConfig()).join(','));
-    return;
-  }
-
-  // 获取-v的帮助
-  if(argv.v){
-    console.log('<command>: projs -v')
-    console.log('<description>: 获取当前projs的版本号');
-    return;
-  }
-
-  // 获取
-  if(argv.s){
-    console.log('<command>: projs -s')
-    console.log('<description>: 启动projs');
-    return;
-  }
-
-  // 打包
-  if(argv.f || argv.t){
-    console.log('<command>: projs -f [form|uri][可选] -t [target][必选] -u [username][可选] -p [password][可选]');
-    console.log('<description>:');
-    console.log('      1) 如果-f是SVN地址，则-u,-p,是[必选]');
-    console.log('      2) 如果只有一个参数，则为-t,即打包当前目录');
-    return;
-  }
-
-  return console.log(getDefaultText());
-}
-
-// 配置
-if(argv.c){
-  var conf = '';
-  if(argv._.length == 2){
-    return projs.setConfig(argv._[0],argv._[1]);
-  }else if(argv._.length == 1){
-    var conf = projs.getConfig(argv._[0]);
-    return console.log(conf);
-  }else{
-    console.log('\nprojs\'s config is:\n');
-    conf = projs.getConfig();
-    return console.log(JSON.stringify(conf).replace(/{|}/gi,'\n  ').replace(/\,\"/gi,'\n\n  "'));
-  }
-}
-
-
-// 打包
-if(argv.f && argv.t){
-  if(/^http/gi.test(argv.f)){
-    if(argv.u && argv.p){
-      return projs.compress(argv.f,argv.t,argv.u,argv.p);
-    }else {
-      return console.log('参数缺失！请查看帮助: projs -h -f');
-    }
-  }else{
-    return projs.compress(argv.f,argv.t);
-  }
-}else if(argv.f && !argv.t && !argv.u && !argv.p){
-  return projs.compress(null,argv.f);
-}
-
-// 版本号
-if(argv.v || argv.version){
-  console.log('0.2.3');
+// 启动服务
+if(argv._[0] == 'start' || argv._.start){
+  projs.start();
   return;
 }
 
-// 启动服务
-if(argv._[0] == 'start'){
-  projs.start();
+// 安装插件
+if (argv._[0] == 'install'){
+  if(argv._[1]){
+    projs.pack.install(argv._[1]);
+  }else {
+    console.log('<command>: projs install [path|http|https]');
+    console.log('<description>: 安装打包插件')
+  }
+  return;
+}
+
+// 获取版本号
+if (argv.version || argv.v){
+  console.log($version);
+  return;
+}
+
+// 设置参数
+if (argv.config || argv.c){
+  (function(){
+    var conf = '';
+    if(argv._.length == 2){
+      return projs.setConfig(argv._[0],argv._[1]);
+    }else if(argv._.length == 1){
+      var conf = projs.getConfig(argv._[0]);
+      return console.log(conf);
+    }else{
+      conf = projs.getConfig();
+      return console.log('\n'+JSON.stringify(conf).replace(/{|}/gi,'  ').replace(/\,\"/gi,'\n  "')+'\n');
+    }
+  })();
+  return;
+}
+
+// 打包
+if (argv.compress || argv._.length > 1){
+  (function(from,to,username,password){
+    if(!from && !to){
+      console.log('<command>: projs [from] [to] --compress [--username][--password]');
+      console.log('<description>:');
+      console.log('      1) 如果[from]为SVN地址时，需填写--username和--password');
+      console.log('      2) 如果没有[from]，那么[from]等于[to]');
+      return;
+    }
+
+    // 如果是SVN地址
+    if(/^http/gi.test(from)){
+      if(username && password){
+        projs.compress(from,to,username,password);
+      }
+    }else {
+      projs.compress(null,from);
+    }
+  })(argv._[0],argv._[1],argv.username,argv.password);
   return;
 }
 
 console.log(getDefaultText());
 
 function getDefaultText(){
-  var text = [];
+  var text = [''];
   text.push('Usage: projs <command>');
-  text.push('');
-  text.push('-h    获取帮助信息');
-  text.push('-c    获取配置参数或设置配置参数');
-  text.push('-v    获取版本号');
-  text.push('-f    要打包的目录或代码仓库地址');
-  text.push('-t    打包后输出的目录');
-  text.push('-u    代码仓库的用户名');
-  text.push('-p    代码仓库的密码');
-  text.push('start    启动服务');
-  text.push('');
+  text.push('--------------------------------');
+  text.push('--start     启动服务');
+  text.push('--config    设置参数');
+  text.push('--compress  打包');
+  text.push('--version   获取版本号');
+  text.push('install     安装插件包');
+  text.push('--------------------------------');
+  text.push('version: '+$version);
+  text.push('github: https://github.com/stri/projs\n');
+  // text.push('-h    获取帮助信息');
+  // text.push('-c    获取配置参数或设置配置参数');
+  // text.push('-v    获取版本号');
+  // text.push('-f    要打包的目录或代码仓库地址');
+  // text.push('-t    打包后输出的目录');
+  // text.push('-u    代码仓库的用户名');
+  // text.push('-p    代码仓库的密码');
+  // text.push('start    启动服务');
+  text.push(' ')
 
   return text.join('\n  ');
 }
