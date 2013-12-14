@@ -2,7 +2,7 @@
 var projs = require('../index');
 var argv = require('optimist').argv;
 var task = require('../lib/task');
-var $version = '0.3.3';
+var $version = '0.3.4';
 
 task.on('setConfig',function(data) {
   if(data.code == 2){
