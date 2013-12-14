@@ -4,7 +4,7 @@
 
 #### 最新版本
 
-`0.3.2` 	[更新历史及功能列表](https://github.com/stri/projs/issues/5)
+`0.3.3` 	[更新历史及功能列表](https://github.com/stri/projs/issues/5)
 
     
 #### 特色一：功能众多，使用简单
