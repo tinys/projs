@@ -6,11 +6,8 @@
 
 `0.3.0` 	[更新历史及功能列表](https://github.com/stri/projs/issues/5)
 
-#### 安装命令
-
-    npm install projs -g
     
-#### 使用方法
+#### 特色一：功能众多，使用简单
 
 
 第一步、安装
@@ -49,9 +46,12 @@
 第七步、OK
 
 
-#### 安装打包插件
+#### 特色二：可扩展包的合并方式
 	
 > 供使用者进行打包方式扩展使用，可扩展自定义的包合并方法，具体参考：[https://github.com/stri/projs/issues/6](https://github.com/stri/projs/issues/6)
 
 	porjs install http:xx.con/import.js
 
+#### 特色三： `Pro.js`
+
+> 可以像`nodejs`一样写前端JS，更多详情：[基本版](https://github.com/stri/projs/issues/1)、[Pro.js 3系](https://github.com/stri/projs/issues/3);
