@@ -1,9 +1,9 @@
  {
-    "root": "/afaf/fadfadf/fadfadf/fadfa/aaa",
+    "root": "/Users/mac/Documents/my_work_space/sae-jscssimage/jscssimage/3",
     "port": 80,
-    "js_package_depend_style": "test",
-    "css_package_depend_style": "sass",
-    "js_cache": "true",
+    "js_package_depend_style": "default",
+    "css_package_depend_style": "default",
+    "js_cache": "false",
     "css_cache": "false",
     "css_compress": "false",
     "js_compress": "false",
@@ -17,5 +17,6 @@
     "js_compress_path": "/page/",
     "css_compress_path": "/page/",
     "js_compress_path_clear": "true",
-    "css_compress_path_clear": "true"
+    "css_compress_path_clear": "true",
+    "gzip": "true"
 }
