@@ -18,5 +18,6 @@
     "css_compress_path": "/page/",
     "js_compress_path_clear": "true",
     "css_compress_path_clear": "true",
+    "pro_module_path":"/Users/mac/Documents/my_work_space/Pro.js/pro_modules/",
     "gzip": "true"
 }
