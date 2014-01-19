@@ -13,16 +13,16 @@ var task = require('./lib/util/task');
 var pack = require('./lib/pack');
 var httpd;
 path.existsSync = fs.existsSync ? function(uri) {
-  return fs.existsSync.call(fs, uri)
+	return fs.existsSync.call(fs, uri)
 } : path.existsSync;
 
 module.exports = {
 	pack: pack,
 	start: function() {
-		var config = conf.getConfig();
-		httpd = httpd ? httpd : server(config);
-
-		httpd.start()
+		this.getConfig(function(config) {
+			httpd = httpd ? httpd : server(config);
+			httpd.start();
+		});
 	},
 	stop: function() {
 		return httpd && httpd.stop();
@@ -32,22 +32,31 @@ module.exports = {
 		return parseJSON(data);
 	},
 	compress: function(from, to, username, password) {
-		config = conf.getConfig();
-		if (/^http/gi.test(from)) {
-			task.svnExport(from, username, password, to, {
-				config: config,
-				onComplete: function() {
-					task.compress(null, to, config);
+		conf.getConfig(function(config) {
+			if (/^http/gi.test(from)) {
+				task.svnExport(from, username, password, to, {
+					config: config,
+					onComplete: function() {
+						task.compress(null, to, config);
+					}
+				});
+			} else {
+				if (!path.existsSync(to)) {
+					console.log(to + ' is exit.');
+				} else {
+					task.compress(from, to, config);
 				}
-			});
-		} else {
-      if(!path.existsSync(to)){
-        console.log(to+' is exit.');
-      }else{
-        task.compress(from, to, config);
-      }
-		}
+			}
+		});
 	},
-	setConfig: conf.setConfig,
-	getConfig: conf.getConfig
+	installConfig: function(uri,callback){
+		console.log(uri);
+		return conf.installConfig(uri,callback);
+	},
+	setConfig: function(name, value, force) {
+		return conf.setConfig(name, value, force)
+	},
+	getConfig: function(name, callback) {
+		return conf.getConfig(name, callback);
+	}
 };
