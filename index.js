@@ -8,9 +8,9 @@ var conf = require('./lib/config');
 var server = require('./lib/server');
 var fs = require('fs');
 var path = require('path');
-var parseJSON = require('./lib/util/parseJSON');
 var task = require('./lib/util/task');
 var pack = require('./lib/pack');
+var json = require('./lib/util/json-file')
 var httpd;
 path.existsSync = fs.existsSync ? function(uri) {
 	return fs.existsSync.call(fs, uri)
@@ -27,12 +27,12 @@ module.exports = {
 	stop: function() {
 		return httpd && httpd.stop();
 	},
-	getPackage: function() {
-		var data = fs.readFileSync(path.normalize(__dirname + '/package.json'), 'utf-8');
-		return parseJSON(data);
+	getVersion: function() {
+		var pg = json.read("./package.json");
+		return pg.get('version');
 	},
 	compress: function(from, to, username, password) {
-		conf.getConfig(function(config) {
+		this.getConfig(function(config) {
 			if (/^http/gi.test(from)) {
 				task.svnExport(from, username, password, to, {
 					config: config,

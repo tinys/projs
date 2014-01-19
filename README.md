@@ -40,5 +40,20 @@
 	> 以上工作已完成，正在项目考验中...	
 
 
-9. 添加`seajs`打包；
-10.  。。。
+9. 重构`命令行`操作，提高了使用的方便性
+
+		Usage: projs 
+
+		Options:
+		  -r, --run      run the server.                   
+		  -d, --deploy   deploy the project.               
+		  -c, --config   set or get the config.            
+		  -i, --install  install plugin.                   
+		  -v, --version  the version.                      
+		  -h, --help     Doc: https://github.com/stri/projs
+
+		Not enough non-option arguments: got 0, need at least 1
+		
+10. 添加导入配置文件功能（支持http和路径导入），如下：
+
+		projs path --install --config
