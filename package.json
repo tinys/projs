@@ -1,6 +1,6 @@
 {
 	"name": "projs",
-	"description": "基于nodejs的前端开发工具包，包括前端开发环境的构建，前端JavaScript/CSS的打包。",
+	"description": "一个简单，灵气的前端开发环境构建工具。只需简单的配置，就可以在本地或开发机，快速搭建一个功能众多的前端开发环境。",
 	"author": {
 		"name": "Stri",
 		"email": "stri.vip@gmail.com",
