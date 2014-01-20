@@ -8,7 +8,7 @@ var conf = require('./lib/config');
 var server = require('./lib/server');
 var fs = require('fs');
 var path = require('path');
-var task = require('./lib/util/task');
+var task = require('./lib/util/task@1.0');
 var pack = require('./lib/pack');
 var json = require('./lib/util/json-file')
 var httpd;
@@ -31,8 +31,11 @@ module.exports = {
 		var pg = json.read("./package.json");
 		return pg.get('version');
 	},
-	compress: function(from, to, username, password) {
+	compress: function(from, to, username, password,force) {
 		this.getConfig(function(config) {
+			if (force){
+				config.remove_error_file = true;
+			}
 			if (/^http/gi.test(from)) {
 				task.svnExport(from, username, password, to, {
 					config: config,

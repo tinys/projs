@@ -87,5 +87,5 @@ if (keys.length == 2) {
     .describe('p', 'Your Svn or Git password.')
     .argv;
 
-  projs.compress(argv._[0], argv._[1], argv.u || argv.username, argv.p || argv.password);
+  projs.compress(argv._[0], argv._[1], argv.u || argv.username, argv.p || argv.password,argv.force);
 }

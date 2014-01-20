@@ -12,9 +12,9 @@
 
 	"css_package_depend_style": "sass",
 
-	"css_compress": false,
+	"css_compress": true,
 
-	"js_compress": false,
+	"js_compress": true,
 
 	"js_compress_path": "/page/",
 
@@ -36,5 +36,5 @@
 
 	"export_by_css_style": true,
 
-	"remove_error_file": true
+	"remove_error_file": false
 }
