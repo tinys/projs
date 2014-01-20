@@ -12,9 +12,9 @@
 
 	"css_package_depend_style": "sass",
 
-	"css_compress": true,
+	"css_compress": false,
 
-	"js_compress": true,
+	"js_compress": false,
 
 	"js_compress_path": "/page/",
 
@@ -32,5 +32,9 @@
 
 	],
 
-	"pro_module_path": "/Users/mac/Documents/my_work_space/github.com.stri.pjpm.git/pjpm/pro_modules/"
+	"pro_module_path": "/Users/mac/Documents/my_work_space/github.com.stri.pjpm.git/pjpm/pro_modules/",
+
+	"export_by_css_style": true,
+
+	"remove_error_file": true
 }

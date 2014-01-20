@@ -22,5 +22,6 @@
      "unique_js": false,
      "unique_js_options": ["/page/", 0],
      "pro_module_path": "",
+     "remove_error_file": false,
      "gzip": true
  }
