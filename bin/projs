@@ -49,22 +49,32 @@ if (keys.length == 2) {
 } else if (argv._.length == 0 && (argv.c || argv.config || argv.i || argv.install)) {
 
   if (argv.i || argv.install) {
-    argv = optimist.usage('Usage: $0 [url]  -i[--install]')
-      .demand(1)
-      .alias('i', 'install')
-      .describe('i', 'install plugins.')
-      .argv;
+    if (argv.a || argv.all) {
+      console.log(pluginObject.getAll());
+    } else {
+      argv = optimist.usage('Usage: $0 [url]  -i[--install]')
+        .demand(1)
+        .alias('i', 'install')
+        .describe('i', 'install plugins.')
+        .alias('a', 'all')
+        .describe('a', 'get all plugins.')
+        .argv;
+    }
   } else {
     configObject.getConfig(function(conf) {
       console.log('\n' + JSON.stringify(conf, null, true).replace(/{|}/gi, '  ').replace(/\,\"/gi, '\n  "') + '\n');
     });
   }
 
-} else if (argv._.length == 1 && (argv.i || argv.install)) {
+} else if (argv._.length == 1 && (argv.i || argv.install || argv.uninstall)) {
   if (argv.c || argv.config) {
     projs.installConfig(argv._[0]);
   } else {
-    pluginObject.install(argv._[0]);
+    if (argv.uninstall) {
+      pluginObject.uninstall(argv._[0]);
+    } else {
+      pluginObject.install(argv._[0]);
+    }
   }
 } else if (argv._.length == 1 && (argv.c || argv.config)) {
   len = 1;

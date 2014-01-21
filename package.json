@@ -21,7 +21,7 @@
 	"version": "0.4.0",
 	"main": "./index.js",
 	"bin": {
-		"projs": "./bin/projs"
+		"projs": "./bin/projs@1.0"
 	},
 	"engines": {
 		"node": ">=0.4.0"
