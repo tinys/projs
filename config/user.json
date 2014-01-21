@@ -1,16 +1,16 @@
 {
 
-	"root": "/Users/mac/Documents/my_work_space/sae-jscssimage/jscssimage/4",
+	"root": "/Users/mac/Documents/my_work_space/sae-jscssimage/jscssimage/1",
 
 	"css_image_version": true,
 
 	"css_comment_text": "// test ",
 
-	"js_package_depend_style": "projs",
+	"js_package_depend_style": "import",
 
 	"port": 80,
 
-	"css_package_depend_style": "sass",
+	"css_package_depend_style": "default",
 
 	"css_compress": true,
 

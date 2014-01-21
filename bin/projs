@@ -5,7 +5,12 @@ var optimist = require('optimist');
 var argv = optimist.argv;
 var task = require('../lib/task');
 
-task.on('setConfig', function(data) {
+var configObject = projs.getConfigObject(),
+  pluginObject = projs.getPluginObject(),
+  configTask = configObject.task;
+
+// 设置配置
+configTask.on('setConfig', function(data) {
   if (data.code == 2) {
     console.log('\n  Error: ' + data.msg + '\n');
   } else if (data.code == 1) {
@@ -50,7 +55,7 @@ if (keys.length == 2) {
       .describe('i', 'install plugins.')
       .argv;
   } else {
-    projs.getConfig(function(conf) {
+    configObject.getConfig(function(conf) {
       console.log('\n' + JSON.stringify(conf, null, true).replace(/{|}/gi, '  ').replace(/\,\"/gi, '\n  "') + '\n');
     });
   }
@@ -59,7 +64,7 @@ if (keys.length == 2) {
   if (argv.c || argv.config) {
     projs.installConfig(argv._[0]);
   } else {
-    projs.pack.install(argv._[0]);
+    pluginObject.install(argv._[0]);
   }
 } else if (argv._.length == 1 && (argv.c || argv.config)) {
   len = 1;
@@ -69,12 +74,12 @@ if (keys.length == 2) {
     .describe('c', 'set or get the config.')
     .argv;
   if (argv.c || argv.config) {
-    projs.getConfig(argv._[0], function(value) {
+    configObject.getConfig(argv._[0], function(value) {
       console.log(value);
     });
   }
 } else if (argv._.length == 2 && (argv.c || argv.config)) {
-  projs.setConfig(argv._[0], argv._[1]);
+  configObject.setConfig(argv._[0], argv._[1]);
 } else if (argv.d || argv.deploy) {
   len = 2
   argv = optimist.usage('Usage: $0 [from] [to] -d[--deploy] -u[--username] xx -p[--password] xx')
@@ -87,5 +92,5 @@ if (keys.length == 2) {
     .describe('p', 'Your Svn or Git password.')
     .argv;
 
-  projs.compress(argv._[0], argv._[1], argv.u || argv.username, argv.p || argv.password,argv.force);
+  projs.compress(argv._[0], argv._[1], argv.u || argv.username, argv.p || argv.password, argv.force);
 }
