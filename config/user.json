@@ -4,7 +4,7 @@
 
 	"css_image_version": true,
 
-	"css_comment_text": "// test ",
+	"css_comment_text": "\/\/ test ",
 
 	"js_package_depend_style": "import",
 
@@ -24,11 +24,11 @@
 
 	"unique_js_options": [
 
-	
-	"/page/",
 
-	
-	0
+		"/page/",
+
+
+		0
 
 	],
 
