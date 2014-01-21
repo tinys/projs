@@ -57,3 +57,22 @@
 10. 添加导入配置文件功能（支持http和路径导入），如下：
 
 		projs path --install --config
+		
+11. 完善与整合`projs`对象，方便扩展
+
+	包括四个核心部分
+	
+	* 配置对象:`projs.getConfigObject`
+	
+	* 合并对象:`projs.getCombineObject`
+	
+	* Http服务对象:`projs.getServerObject`
+	
+	* 插件对象:`projs.getPluginObject`
+	
+	* 任务对象: `projs.getTaskObject`
+	
+12. 功能的扩展`projs.extend`，可以通过`projs.extend`对projs的四个核心部分进行扩展。
+
+> 以上工作已完成，正在项目考验中...
+
